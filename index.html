@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Komuta · Every seat has a history</title>
+  <meta name="description" content="Komuta is a peer-to-peer market for concert, stadium, flight and train seats on BOT Chain. List a seat, take offers, swap in one transaction.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/landing.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav wrap">
+    <a class="mark" href="/" aria-label="Komuta, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28V14a4 4 0 0 1 4-4h3a4 4 0 0 1 4 4v14z" fill="currentColor"/><path d="M17 22V8a4 4 0 0 1 4-4h3a4 4 0 0 1 4 4v14z" fill="var(--accent)"/></svg>
+      Komuta
+    </a>
+    <nav aria-label="Page">
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#check">Check a seat</a>
+      <a class="link" href="#faq">FAQ</a>
+    </nav>
+    <a class="button button--small" href="/browse.html">Browse seats</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero: the sentence split by a frame; the reel of seats passes through it while the halves hold. -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__stage wrap">
+        <h1 id="hero-title" class="hero__title">
+          <span class="hero__half hero__half--a">Every seat</span>
+          <span class="hero__half hero__half--b">has a history</span>
+        </h1>
+        <div class="hero__window" aria-label="Seats listed on Komuta" role="group">
+          <ol class="reel" id="reel">
+            <!-- filled from the ledger by landing.js; this first frame is the no-script fallback -->
+            <li class="reel__frame">
+              <img src="/img/stadium-rows.jpg" alt="Rows of green seats in the Olympiastadion, Munich" width="1920" height="1280">
+            </li>
+          </ol>
+        </div>
+        <div class="hero__support">
+          <p>Komuta is an open market for concert, stadium, flight and train seats you can't use. List one, take offers, and swap it in a single transaction on BOT Chain.</p>
+          <a class="button" href="/browse.html">Browse seats</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro: the problem, with the empty stadium -->
+    <section class="intro wrap" aria-labelledby="intro-title">
+      <h2 id="intro-title" class="intro__title head-xl" data-reveal>
+        <span class="intro__line">A seat you can't use</span>
+        <span class="intro__line">is dead value</span>
+      </h2>
+      <p class="intro__text" data-reveal>Airlines forfeit it. Railways forfeit it. Resale platforms take double-digit fees and hold your payout. Komuta gives the seat itself an open ledger.</p>
+      <figure class="intro__big" data-reveal>
+        <img src="/img/concert-hall.jpg" alt="Empty rows of seats under the lit ceiling of the Schnitzer Concert Hall, Portland" width="1920" height="1440" loading="lazy" data-drift>
+      </figure>
+      <figure class="intro__small" data-reveal>
+        <img src="/img/stadium-rows.jpg" alt="Rows of empty green stadium seats in Munich" width="1920" height="1280" loading="lazy">
+      </figure>
+    </section>
+
+    <!-- How it works: the stages as one bar, each segment as long as the stage really takes -->
+    <section class="how wrap" id="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="head-xl" data-reveal>One transaction, no escrow</h2>
+      <ol class="stages" data-ui data-reveal aria-label="From listing to settlement">
+        <li class="stage stage--list" style="--grow: 22">
+          <span class="stage__time">About two minutes</span>
+          <p class="stage__text">First, describe the seat: what it is, when, where, the seat reference, and a price or swap-only.</p>
+        </li>
+        <li class="stage stage--offers" style="--grow: 56">
+          <span class="stage__time">Up to 24 hours</span>
+          <p class="stage__text">Then offers arrive. Each stays open for a day, and you can counter any of them.</p>
+        </li>
+        <li class="stage stage--settle" style="--grow: 22">
+          <span class="stage__time">Under a second</span>
+          <p class="stage__text">Last, accept. Seat and payment change hands together, or neither does.</p>
+        </li>
+      </ol>
+      <p class="how__note" data-reveal>The contract never holds your money between an offer and its acceptance.</p>
+    </section>
+
+    <!-- Showcase: the live lookup. Type a seat and its history replays from the ledger's events. -->
+    <section class="check wrap" id="check" aria-labelledby="check-title">
+      <h2 id="check-title" class="head-xl" data-reveal>Check a seat before you pay</h2>
+      <form class="check__form" data-ui role="search" action="/browse.html">
+        <label class="sr-only" for="seat-query">Seat to look up</label>
+        <input class="check__input" id="seat-query" name="q" type="search" value="Block 112 row F" autocomplete="off" spellcheck="false">
+      </form>
+      <div class="check__body">
+        <div class="check__answer" id="seat-answer" data-ui aria-live="polite"></div>
+        <figure class="check__picture"><img id="seat-picture" src="/img/stadium-rows.jpg" alt="Rows of green seats in the Olympiastadion, Munich" width="1920" height="1280" loading="lazy"></figure>
+      </div>
+      <div class="check__examples" aria-label="Try another seat">
+        <button type="button" data-q="14C">14C</button>
+        <button type="button" data-q="Coach 7">Coach 7</button>
+        <button type="button" data-q="Orchestra row K">Orchestra row K</button>
+      </div>
+    </section>
+
+    <!-- Features: rows hung from one axis, each with its picture in the margin -->
+    <section class="rows wrap" aria-labelledby="rows-title">
+      <h2 id="rows-title" class="rows__title head-xl" data-reveal>Built around the seat</h2>
+      <figure class="rows__aside">
+        <img src="/img/ticket-1953.jpg" alt="A pink 1953 SJ supplement ticket for an express train from Göteborg C, price 3.00, punched" width="1920" height="2296" loading="lazy">
+        <figcaption>SJ supplement ticket, Göteborg C, 19 July 1953.</figcaption>
+      </figure>
+      <article class="feature" data-reveal>
+        <h3 class="feature__title">Three kinds of seat</h3>
+        <p>Events, flights and trains share one listing: a date, a venue or route, a seat reference, and a price or swap-only.</p>
+        <figure class="feature__media feature__media--a">
+          <video src="/img/train-window.webm" poster="/img/train-window-poster.jpg" muted loop playsinline autoplay preload="metadata" width="1280" height="720" aria-label="Snowy fields passing a high-speed train window"></video>
+        </figure>
+      </article>
+      <article class="feature" data-reveal>
+        <h3 class="feature__title">History you can replay</h3>
+        <p>Every listing, offer and swap is an event on BOT Chain. Rebuild any seat's chain of holders from the explorer and it matches the app, row for row.</p>
+        <figure class="feature__media feature__media--b">
+          <img src="/img/concert-hall.jpg" alt="Balconies and stalls of the Schnitzer Concert Hall" width="1920" height="1440" loading="lazy">
+        </figure>
+      </article>
+      <article class="feature" data-reveal>
+        <h3 class="feature__title">Reputation nobody can buy</h3>
+        <p>After each swap both sides rate each other once, one to five stars. The score lives in the contract and can't be transferred.</p>
+        <figure class="feature__media feature__media--c">
+          <img src="/img/cabin-seats.jpg" alt="Rows of economy seats in an aircraft cabin" width="1920" height="1440" loading="lazy">
+        </figure>
+      </article>
+      <article class="feature" data-reveal>
+        <h3 class="feature__title">Fees of a fraction of a cent</h3>
+        <p>A seat can change hands a dozen times for less than one resale fee, so even a seat worth under a dollar is worth listing.</p>
+        <figure class="feature__media feature__media--d">
+          <img src="/img/train-second-class.jpg" alt="Blue second-class seats along the aisle of a high-speed train" width="1920" height="1452" loading="lazy">
+        </figure>
+      </article>
+    </section>
+
+    <!-- FAQ: every answer open; large questions as the index -->
+    <section class="faq wrap" id="faq" aria-labelledby="faq-title">
+      <div class="faq__row">
+        <h2 id="faq-title" class="faq__q faq__q--head">Plain answers</h2>
+      </div>
+      <div class="faq__row" data-reveal>
+        <h3 class="faq__q">Does Komuta get me through the door?</h3>
+        <p class="faq__a">No. Komuta trades the right to a seat; the venue, airline or railway decides entry. Check their transfer rules before you buy.</p>
+      </div>
+      <div class="faq__row" data-reveal>
+        <h3 class="faq__q">Who holds my money during a swap?</h3>
+        <p class="faq__a">Nobody. Payment and seat move in the same transaction, or neither moves. The contract never holds funds between an offer and its acceptance.</p>
+      </div>
+      <div class="faq__row" data-reveal>
+        <h3 class="faq__q">What happens to an offer nobody answers?</h3>
+        <p class="faq__a">It expires after 24 hours. Accepting it then fails, and nothing is lost because nothing was locked.</p>
+      </div>
+      <div class="faq__row" data-reveal>
+        <h3 class="faq__q">Can the same seat be listed twice?</h3>
+        <p class="faq__a">No. The contract allows one active listing per seat, and the app flags any listing with the same venue and seat reference.</p>
+      </div>
+      <div class="faq__row" data-reveal>
+        <h3 class="faq__q">What do I pay with?</h3>
+        <p class="faq__a">BOT Chain's native token. No cards, no fiat. Listing and settling each cost a fraction of a cent.</p>
+      </div>
+      <div class="faq__row" data-reveal>
+        <h3 class="faq__q">Is my travel plan public?</h3>
+        <p class="faq__a">Only the category, date, price and a hash of the venue or route go on-chain. The readable venue and seat stay in the listing's metadata, revealed by the holder.</p>
+      </div>
+    </section>
+
+    <!-- CTA: the sentence with a blank; the blank is the form -->
+    <section class="cta wrap" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="sr-only">List your seat</h2>
+      <form class="cta__sentence" action="/list.html" method="get">
+        <span>I can't make it to</span>
+        <label class="sr-only" for="cta-venue">Venue or route</label>
+        <input class="cta__field" id="cta-venue" name="venue" placeholder="venue or route" autocomplete="off">
+        <button class="cta__button" type="submit">List my seat</button>
+      </form>
+      <p class="cta__after">Next you add the date, seat and price. Listing is one transaction.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <ul class="footer__notes">
+        <li class="mark">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28V14a4 4 0 0 1 4-4h3a4 4 0 0 1 4 4v14z" fill="currentColor"/><path d="M17 22V8a4 4 0 0 1 4-4h3a4 4 0 0 1 4 4v14z" fill="#6f8ff0"/></svg>
+          Komuta
+        </li>
+        <li>A seat market on BOT Chain</li>
+        <li>RWA · contract Komuta.sol</li>
+      </ul>
+      <a class="link" href="#main">Back to top</a>
+    </div>
+    <div class="wrap footer__big">
+      <a class="footer__line" href="/browse.html">Browse seats</a>
+    </div>
+    <div class="wrap footer__meta">
+      <nav aria-label="App">
+        <a class="link" href="/browse.html">Browse</a>
+        <a class="link" href="/list.html">List a seat</a>
+        <a class="link" href="/offers.html">Offers</a>
+        <a class="link" href="/profile.html">Profile</a>
+      </nav>
+      <p class="footer__credits">
+        Pictures via Wikimedia Commons:
+        <a href="https://commons.wikimedia.org/wiki/File:Olympic_Stadium_Munich_-_Rows_of_Seats,_April_2019_-04.jpg">stadium rows</a>, Martin Falbisoner, CC BY-SA 4.0 ·
+        <a href="https://commons.wikimedia.org/wiki/File:Schnitzer_Concert_Hall,_Portland,_Oregon_-_seats.JPG">concert hall</a>, Another Believer, CC BY-SA 3.0 ·
+        <a href="https://commons.wikimedia.org/wiki/File:Seats_on_an_airplane.jpg">cabin</a>, Douglas P. Perkins, CC BY-SA 3.0 ·
+        <a href="https://commons.wikimedia.org/wiki/File:Interior_of_Second_Class_Seat_CR300AF-2027.jpg">train seats</a>, Junyi Lou, CC BY-SA 4.0 ·
+        <a href="https://commons.wikimedia.org/wiki/File:View_of_Anqing_snow_scene_from_the_high-speed_train_window_(20250208_~_Video_2).webm">train window</a>, Fumikas Sagisavas, CC BY 4.0 ·
+        <a href="https://commons.wikimedia.org/wiki/File:1953_SJ_Sweden_Edmondson_supplement_train_ticket_outbound_Gothenburg_Sweden_view_1.jpg">1953 ticket</a>, R. Henrik Nilsson, CC BY 4.0
+      </p>
+      <p>BOT Chain · 2026</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/landing.js"></script>
+</body>
+</html>

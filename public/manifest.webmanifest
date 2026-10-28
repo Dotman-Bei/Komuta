@@ -1,0 +1,13 @@
+{
+  "name": "Komuta",
+  "short_name": "Komuta",
+  "description": "Swap concert, stadium, flight and train seats on BOT Chain. Every seat has a history.",
+  "start_url": "/browse.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
